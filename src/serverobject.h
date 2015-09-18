@@ -259,7 +259,10 @@ protected:
 
 private:
 	// Used for creating objects based on type
-	static std::map<u16, Factory> m_types;
+	static std::map<u16, Factory>& m_types() {
+      static std::map<u16, Factory>* safe = new std::map<u16, Factory>();
+      return *safe;
+    }
 };
 
 #endif

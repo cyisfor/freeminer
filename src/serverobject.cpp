@@ -50,8 +50,9 @@ ServerActiveObject* ServerActiveObject::create(ActiveObjectType type,
 {
 	// Find factory function
 	std::map<u16, Factory>::iterator n;
-	n = m_types.find(type);
-	if(n == m_types.end()) {
+    std::map<u16, Factory>& types = m_types();
+	n = types.find(type);
+	if(n == types.end()) {
 		// These are 0.3 entity types, return without error.
 		if (ACTIVEOBJECT_TYPE_ITEM <= type && type <= ACTIVEOBJECT_TYPE_MOBV2) {
 			return NULL;
@@ -71,10 +72,11 @@ ServerActiveObject* ServerActiveObject::create(ActiveObjectType type,
 void ServerActiveObject::registerType(u16 type, Factory f)
 {
 	std::map<u16, Factory>::iterator n;
-	n = m_types.find(type);
-	if(n != m_types.end())
+    std::map<u16, Factory>& types = m_types();
+	n = types.find(type);
+	if(n != types.end())
 		return;
-	m_types[type] = f;
+	types[type] = f;
 }
 
 float ServerActiveObject::getMinimumSavedMovement()

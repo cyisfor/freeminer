@@ -54,8 +54,6 @@ struct ToolCapabilities;
 
 #define PP(x) "("<<(x).X<<","<<(x).Y<<","<<(x).Z<<")"
 
-std::map<u16, ClientActiveObject::Factory> ClientActiveObject::m_types;
-
 SmoothTranslator::SmoothTranslator():
 	vect_old(0,0,0),
 	vect_show(0,0,0),
@@ -171,7 +169,7 @@ private:
 };
 
 // Prototype
-TestCAO proto_TestCAO(NULL, NULL);
+//TestCAO proto_TestCAO(NULL, NULL);
 
 TestCAO::TestCAO(IGameDef *gamedef, ClientEnvironment *env):
 	ClientActiveObject(0, gamedef, env),
